@@ -16,8 +16,7 @@ const getData = (query = "") =>
     $.ajax({
       crossDomain: true,
       headers: {
-        "Access-Control-Allow-Origin":
-          "https://muhamadaqmal13.github.io/learn-crud/",
+        "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
       },
       url: `https://learn-crud-employe.herokuapp.com/api/teravin/employees${query}`,
       success: function (res) {
@@ -37,8 +36,7 @@ const getDetailData = (id) =>
     $.ajax({
       crossDomain: true,
       headers: {
-        "Access-Control-Allow-Origin":
-          "https://muhamadaqmal13.github.io/learn-crud/",
+        "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
       },
       url: `https://learn-crud-employe.herokuapp.com/api/teravin/detail-employee/${id}`,
       success: function (res) {
@@ -56,8 +54,7 @@ const getDeleteData = (id) =>
       method: "DELETE",
       crossDomain: true,
       headers: {
-        "Access-Control-Allow-Origin":
-          "https://muhamadaqmal13.github.io/learn-crud/",
+        "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
       },
       url: `https://learn-crud-employe.herokuapp.com/api/teravin/delete-employee/${id}`,
       success: function (res) {
@@ -74,8 +71,7 @@ const postEditData = (data) =>
       method: "PATCH",
       crossDomain: true,
       headers: {
-        "Access-Control-Allow-Origin":
-          "https://muhamadaqmal13.github.io/learn-crud/",
+        "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
       },
       url: `https://learn-crud-employe.herokuapp.com/api/teravin/update-employee`,
       data,
@@ -95,8 +91,7 @@ const postAddData = (data) =>
       method: "POST",
       crossDomain: true,
       headers: {
-        "Access-Control-Allow-Origin":
-          "https://muhamadaqmal13.github.io/learn-crud/",
+        "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
       },
       url: `https://learn-crud-employe.herokuapp.com/api/teravin/add-employee`,
       data,
