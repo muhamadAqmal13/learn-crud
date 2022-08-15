@@ -1,0 +1,238 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  padding: 0 50px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  align-items: center;
+}
+
+.header .search input {
+  width: 600px;
+  height: 30px;
+  padding: 5px 12px;
+}
+
+#btn-search {
+  height: 30px;
+  width: 60px;
+  border: none;
+  background-color: darkcyan;
+  color: #eee;
+  cursor: pointer;
+}
+
+#btn-add {
+  padding: 8px;
+  border: none;
+  background-color: darkcyan;
+  color: #eee;
+  cursor: pointer;
+}
+
+#table_id {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#table_id th {
+  background-color: darkcyan;
+  color: #eee;
+  cursor: pointer;
+  user-select: none;
+}
+
+#table_id th,
+#table_id td {
+  border: 1px solid #333;
+  text-align: start;
+  padding: 10px;
+}
+
+#table_id th:first-child {
+  width: 110px;
+}
+#table_id th:last-child {
+  width: 200px;
+}
+
+#table .actions button {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.title-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.actions button {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.container-empty {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+}
+
+.container-modal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-box {
+  width: 700px;
+  background-color: #eaeaea;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.modal-box .modal-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-box .modal-header .modal-close {
+  cursor: pointer;
+}
+
+.modal-box .modal-content {
+  margin: 30px 0;
+}
+
+.modal-box .modal-content .data {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.modal-box .button {
+  align-self: flex-end;
+}
+
+.modal-box .button button {
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  background-color: darkcyan;
+  color: #eaeaea;
+}
+
+.form-input label,
+#id-label,
+#input-id {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 0.5fr 1fr;
+  margin: 20px 0;
+}
+
+#id-label,
+#input-id {
+  align-items: flex-start;
+}
+
+label p {
+  align-self: flex-start;
+}
+
+.form-input label input,
+#id-label input {
+  padding: 4px 8px;
+  width: 100%;
+}
+
+.form-input label #birthday {
+  width: fit-content;
+}
+
+.form-input label input:focus {
+  outline: none;
+  border: 2px solid #333;
+}
+
+.form-input .address {
+  display: flex;
+}
+
+.form-input #address0,
+.form-input #address1,
+.form-input #address2 {
+  width: 95%;
+}
+
+.form-input .address .btn-add-address {
+  background-color: darkcyan;
+  padding: 0 20px;
+  color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.errors {
+  color: red;
+}
+
+.paginations {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+  align-items: center;
+  font-size: 14px;
+}
+
+.paginations .pages .btnpages,
+.paginations .dropdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.paginations .pages .btnpages button {
+  margin: 0 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.paginations .dropdown select {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.paginations #limit {
+  margin: 0 10px;
+}
