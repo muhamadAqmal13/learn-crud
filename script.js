@@ -14,6 +14,7 @@ let paramsPage = ``;
 const getData = (query = "") =>
   new Promise((resolve, reject) => {
     $.ajax({
+      crossDomain: true,
       url: `https://learn-crud-employe.herokuapp.com/api/teravin/employees${query}`,
       success: function (res) {
         clearTableEmpty();
@@ -30,6 +31,7 @@ const getData = (query = "") =>
 const getDetailData = (id) =>
   new Promise((resolve, reject) => {
     $.ajax({
+      crossDomain: true,
       url: `https://learn-crud-employe.herokuapp.com/api/teravin/detail-employee/${id}`,
       success: function (res) {
         resolve(res);
@@ -44,6 +46,7 @@ const getDeleteData = (id) =>
   new Promise((resolve, reject) => {
     $.ajax({
       method: "DELETE",
+      crossDomain: true,
       url: `https://learn-crud-employe.herokuapp.com/api/teravin/delete-employee/${id}`,
       success: function (res) {
         resolve(res);
@@ -57,6 +60,7 @@ const postEditData = (data) =>
   new Promise(async (resolve, reject) => {
     $.ajax({
       method: "PATCH",
+      crossDomain: true,
       url: `https://learn-crud-employe.herokuapp.com/api/teravin/update-employee`,
       data,
       contentType: "application/json; charset=utf-8",
@@ -73,6 +77,7 @@ const postAddData = (data) =>
   new Promise(async (resolve, reject) => {
     $.ajax({
       method: "POST",
+      crossDomain: true,
       url: `https://learn-crud-employe.herokuapp.com/api/teravin/add-employee`,
       data,
       contentType: "application/json; charset=utf-8",
