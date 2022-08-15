@@ -197,6 +197,10 @@ const displayTableEmpty = () => {
     <p>Data is empty</p>
   </div>`;
   $(element).insertAfter("table");
+  $("#firstPage").attr("disabled", true);
+  $("#previous").attr("disabled", true);
+  $("#lastPage").attr("disabled", true);
+  $("#next").attr("disabled", true);
 };
 const clearTableEmpty = () => {
   $(".container-empty").remove();
