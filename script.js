@@ -18,7 +18,7 @@ const getData = (query = "") =>
       // headers: {
       //   "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
       // },
-      url: `http://localhost:3001/api/v1/employees${query}`,
+      url: `https://learn-crud-employe.herokuapp.com/api/v1/employees${query}`,
       success: function (res) {
         clearTableEmpty();
         resolve(res);
@@ -38,7 +38,7 @@ const getDetailData = (id) =>
       // headers: {
       //   "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
       // },
-      url: `http://localhost:3001/api/v1/detail-employee/${id}`,
+      url: `https://learn-crud-employe.herokuapp.com/api/v1/detail-employee/${id}`,
       success: function (res) {
         resolve(res);
       },
@@ -56,7 +56,7 @@ const getDeleteData = (id) =>
       // headers: {
       //   "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
       // },
-      url: `http://localhost:3001/api/v1/delete-employee/${id}`,
+      url: `https://learn-crud-employe.herokuapp.com/api/v1/delete-employee/${id}`,
       success: function (res) {
         resolve(res);
       },
@@ -73,7 +73,7 @@ const postEditData = (data) =>
       // headers: {
       //   "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
       // },
-      url: `http://localhost:3001/api/v1/update-employee`,
+      url: `https://learn-crud-employe.herokuapp.com/api/v1/update-employee`,
       data,
       contentType: "application/json; charset=utf-8",
       success: function (res) {
@@ -93,7 +93,7 @@ const postAddData = (data) =>
       // headers: {
       //   "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
       // },
-      url: `http://localhost:3001/api/v1/add-employee`,
+      url: `https://learn-crud-employe.herokuapp.com/api/v1/add-employee`,
       data,
       contentType: "application/json; charset=utf-8",
       success: function (res) {
