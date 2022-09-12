@@ -15,9 +15,9 @@ const getData = (query = "") =>
   new Promise((resolve, reject) => {
     $.ajax({
       crossDomain: true,
-      // headers: {
-      //   "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
-      // },
+      headers: {
+        "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
+      },
       url: `https://learn-crud-employe.herokuapp.com/api/v1/employees${query}`,
       success: function (res) {
         clearTableEmpty();
@@ -35,9 +35,9 @@ const getDetailData = (id) =>
   new Promise((resolve, reject) => {
     $.ajax({
       crossDomain: true,
-      // headers: {
-      //   "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
-      // },
+      headers: {
+        "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
+      },
       url: `https://learn-crud-employe.herokuapp.com/api/v1/detail-employee/${id}`,
       success: function (res) {
         resolve(res);
@@ -53,9 +53,9 @@ const getDeleteData = (id) =>
     $.ajax({
       method: "DELETE",
       crossDomain: true,
-      // headers: {
-      //   "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
-      // },
+      headers: {
+        "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
+      },
       url: `https://learn-crud-employe.herokuapp.com/api/v1/delete-employee/${id}`,
       success: function (res) {
         resolve(res);
@@ -70,9 +70,9 @@ const postEditData = (data) =>
     $.ajax({
       method: "PATCH",
       crossDomain: true,
-      // headers: {
-      //   "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
-      // },
+      headers: {
+        "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
+      },
       url: `https://learn-crud-employe.herokuapp.com/api/v1/update-employee`,
       data,
       contentType: "application/json; charset=utf-8",
@@ -90,9 +90,9 @@ const postAddData = (data) =>
     $.ajax({
       method: "POST",
       crossDomain: true,
-      // headers: {
-      //   "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
-      // },
+      headers: {
+        "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
+      },
       url: `https://learn-crud-employe.herokuapp.com/api/v1/add-employee`,
       data,
       contentType: "application/json; charset=utf-8",
