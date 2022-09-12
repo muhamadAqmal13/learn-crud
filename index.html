@@ -37,7 +37,7 @@
             onkeyup="handleSearchInput(this);"
             placeholder="Search by ID, name or email"
           />
-          <button id="btn-search">Search</button>
+          <button id="btn-search" onclick="handleBtnSearch()">Search</button>
         </div>
         <button id="btn-add" onclick="handleBtnAdd(this)">Add Employee</button>
       </div>
@@ -92,7 +92,7 @@
                 <<
               </button>
               <button id="previous" onclick="handleBtnPrevious(this)"><</button>
-              <div class="info-pages">Page <span id="page">1 of 10</span></div>
+              <div class="info-pages">Page <span id="page"></span></div>
               <button id="next" onclick="handleBtnNext(this)">></button>
               <button id="lastPage" onclick="handleBtnLastPage(this)">
                 >>

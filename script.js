@@ -1,12 +1,12 @@
 let minPage = 1;
-let maxPage = "";
+let maxPage = 1;
 let search = "";
 let order_by = "";
 let sort_by = "";
 let paramsLimit = ``;
 let page = 1;
 let paramsPage = ``;
-
+let keySeach = ``;
 /**
  * Fetch datas
  */
@@ -15,10 +15,10 @@ const getData = (query = "") =>
   new Promise((resolve, reject) => {
     $.ajax({
       crossDomain: true,
-      headers: {
-        "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
-      },
-      url: `https://learn-crud-employe.herokuapp.com/api/teravin/employees${query}`,
+      // headers: {
+      //   "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
+      // },
+      url: `http://localhost:3001/api/v1/employees${query}`,
       success: function (res) {
         clearTableEmpty();
         resolve(res);
@@ -35,10 +35,10 @@ const getDetailData = (id) =>
   new Promise((resolve, reject) => {
     $.ajax({
       crossDomain: true,
-      headers: {
-        "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
-      },
-      url: `https://learn-crud-employe.herokuapp.com/api/teravin/detail-employee/${id}`,
+      // headers: {
+      //   "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
+      // },
+      url: `http://localhost:3001/api/v1/detail-employee/${id}`,
       success: function (res) {
         resolve(res);
       },
@@ -53,10 +53,10 @@ const getDeleteData = (id) =>
     $.ajax({
       method: "DELETE",
       crossDomain: true,
-      headers: {
-        "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
-      },
-      url: `https://learn-crud-employe.herokuapp.com/api/teravin/delete-employee/${id}`,
+      // headers: {
+      //   "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
+      // },
+      url: `http://localhost:3001/api/v1/delete-employee/${id}`,
       success: function (res) {
         resolve(res);
       },
@@ -70,10 +70,10 @@ const postEditData = (data) =>
     $.ajax({
       method: "PATCH",
       crossDomain: true,
-      headers: {
-        "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
-      },
-      url: `https://learn-crud-employe.herokuapp.com/api/teravin/update-employee`,
+      // headers: {
+      //   "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
+      // },
+      url: `http://localhost:3001/api/v1/update-employee`,
       data,
       contentType: "application/json; charset=utf-8",
       success: function (res) {
@@ -90,10 +90,10 @@ const postAddData = (data) =>
     $.ajax({
       method: "POST",
       crossDomain: true,
-      headers: {
-        "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
-      },
-      url: `https://learn-crud-employe.herokuapp.com/api/teravin/add-employee`,
+      // headers: {
+      //   "Access-Control-Allow-Origin": "https://muhamadaqmal13.github.io",
+      // },
+      url: `http://localhost:3001/api/v1/add-employee`,
       data,
       contentType: "application/json; charset=utf-8",
       success: function (res) {
@@ -135,15 +135,16 @@ const paramsRequest = async () => {
 
   changeUrl(params);
   const datas = await getData(params);
-  const max = await maxPages(datas);
-  $("#page").text(`Page ${page} of ${max}`);
   clearTable();
+  const max = await maxPages(datas);
+  $("#page").text(`${page} of ${max}`);
   await displayTable(datas);
 };
+
 const maxPages = async (datas) => {
   const totalData = datas.total;
   const limit = datas.limit;
-  console.log(totalData < limit);
+
   if (totalData < limit) {
     maxPage = "1";
     page = 1;
@@ -152,8 +153,12 @@ const maxPages = async (datas) => {
     $("#lastPage").attr("disabled", true);
     $("#next").attr("disabled", true);
   } else {
-    const max = (totalData / limit).toString().split(".")[0];
-    maxPage = max;
+    const max = totalData / limit;
+    if (max.toString().includes(".")) {
+      maxPage = parseInt(max) + 1;
+    } else {
+      maxPage = max;
+    }
     handleDisabledButton();
   }
   return maxPage;
@@ -164,13 +169,14 @@ const maxPages = async (datas) => {
 const getDataTable = async () => {
   const datas = await getData();
   if (datas.msg.toLowerCase() == "Data masih kosong") {
-    page = "1";
-    maxPage = "1";
+    page = 1;
+    maxPage = 1;
     handleDisabledButton();
     displayTableEmpty();
   } else {
     handleDisabledButton();
     displayTable(datas);
+    maxPages(datas);
   }
 };
 const clearTable = () => {
@@ -400,8 +406,8 @@ const deleteEmployee = async (e) => {
   const id = $(e).data("id");
   const deleteData = await getDeleteData(id);
   removeModal();
-  // $(`tr[data-id="${id}"]`)[0].remove();
   await getDataTable();
+  $("#page").text(`${page} of ${maxPage}`);
 };
 
 /**
@@ -509,6 +515,7 @@ const handleAddEmployee = async (e) => {
     const add = await postAddData(data);
     removeModal();
     await getDataTable();
+    $("#page").text(`${page} of ${maxPage}`);
   }
 };
 
@@ -717,7 +724,17 @@ const getParams = () => {
  */
 
 const handleSearchInput = async (e) => {
-  search = `search=${e.value.trim()}`;
+  keySeach = e.value.trim();
+  console.log(keySeach == "");
+  if (keySeach === "") {
+    search = "";
+    await paramsRequest();
+  }
+};
+const handleBtnSearch = async () => {
+  page = 1;
+  paramsPage = `page=1`;
+  search = `search=${keySeach}`;
   await paramsRequest();
 };
 
@@ -815,8 +832,8 @@ const handleBtnFirstPage = async (e) => {
   await paramsRequest();
 };
 const handleBtnNext = async (e) => {
+  console.log(page + 1);
   paramsPage = `page=${(page += 1)}`;
-
   handleDisabledButton();
   await paramsRequest();
 };
@@ -843,6 +860,7 @@ const handleBtnLastPage = async (e) => {
 
     $("#search").val("");
     minPage = "1";
+    $("#page").text(`${page} of ${maxPage}`);
     changeUrl("index.html");
   });
 })();
