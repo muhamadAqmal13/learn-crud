@@ -26,6 +26,7 @@ const getData = (query = "") =>
       error: (xhr, status, error) => {
         clearTable();
         clearTableEmpty();
+        handleDisabledButton();
         displayTableEmpty();
       },
     });
@@ -168,16 +169,9 @@ const maxPages = async (datas) => {
  */
 const getDataTable = async () => {
   const datas = await getData();
-  if (datas.message.toLowerCase() == "Data masih kosong") {
-    page = 1;
-    maxPage = 1;
-    handleDisabledButton();
-    displayTableEmpty();
-  } else {
-    handleDisabledButton();
-    displayTable(datas);
-    maxPages(datas);
-  }
+  handleDisabledButton();
+  displayTable(datas);
+  maxPages(datas);
 };
 const clearTable = () => {
   return $("#data-body").html("");
