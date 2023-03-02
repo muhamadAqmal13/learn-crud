@@ -20,11 +20,6 @@ const getData = (query = "") =>
       },
       url: `https://learn-crud-server.muhamadaqmal.repl.co/api/v1/employees${query}`,
       success: function (res) {
-        if(!res) {
-          clearTable();
-          clearTableEmpty();
-          displayTableEmpty();
-        }
         clearTableEmpty();
         resolve(res);
       },
@@ -173,7 +168,7 @@ const maxPages = async (datas) => {
  */
 const getDataTable = async () => {
   const datas = await getData();
-  if (datas.msg.toLowerCase() == "Data masih kosong") {
+  if (!data.success) {
     page = 1;
     maxPage = 1;
     handleDisabledButton();
