@@ -20,6 +20,11 @@ const getData = (query = "") =>
       },
       url: `https://learn-crud-server.muhamadaqmal.repl.co/api/v1/employees${query}`,
       success: function (res) {
+        if(!res) {
+          clearTable();
+          clearTableEmpty();
+          displayTableEmpty();
+        }
         clearTableEmpty();
         resolve(res);
       },
