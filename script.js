@@ -168,7 +168,7 @@ const maxPages = async (datas) => {
  */
 const getDataTable = async () => {
   const datas = await getData();
-  if (!data.success) {
+  if (datas.message.toLowerCase() == "Data masih kosong") {
     page = 1;
     maxPage = 1;
     handleDisabledButton();
